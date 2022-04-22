@@ -1,6 +1,5 @@
 ﻿// Copyright 2021 GHA Test Team
-#pragma comment(lib,"pthreadVC3.lib")
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 #include <time.h>
 #include <stdexcept>
 #include <iostream>
@@ -11,7 +10,7 @@
 TEST(test1, prefixSize) {
     TextGenerator generator = TextGenerator("test1.txt", "", 3, 1000);
     generator.readFromFile();
-    ASSERT_TRUE(generator.start.size() == 3);
+    ASSERT_EQ(generator.start.size(),3);
 }
 
 TEST(test2, recordFormation) {
@@ -20,9 +19,9 @@ TEST(test2, recordFormation) {
     prefix expected;
     expected.push_back("Это");
     expected.push_back("второй");
-    std::map<prefix, std::vector<std::string>>::iterator r=g.stateTab.find(expected);
+    table::iterator r=g.stateTab.find(expected);
     if (r != g.stateTab.end()) {
-        ASSERT_TRUE(r->second[0] == "тест");
+        ASSERT_EQ(r->second[0],"тест");
     } else {
         FAIL();
     }
@@ -36,8 +35,6 @@ TEST(test3, wordChoice) {
     expected.push_back("полюбил");
     std::string nextStr = generator.selectNewStr(expected);
     ASSERT_EQ(nextStr, "программирование");
-
-
 }
 
 TEST(test4, multipleChoice) {

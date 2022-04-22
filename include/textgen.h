@@ -11,13 +11,14 @@
 #include <random>
 
 typedef std::deque<std::string> prefix;
+typedef std::map<prefix, std::vector<std::string>> table;
 
 class TextGenerator {
-public:
+ public:
     int NPREF;
     int MAXGEN;
     prefix start;
-    std::map<prefix, std::vector<std::string>> stateTab;
+    table stateTab;
     std::string fileIn;
     std::string fileOut;
     TextGenerator(std::string, std::string, int, int);

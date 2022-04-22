@@ -2,7 +2,8 @@
 // #pragma once
 #include "textgen.h"
 
-TextGenerator::TextGenerator(std::string in, std::string out, int sPref, int sText) {
+TextGenerator::TextGenerator(std::string in, std::string out, 
+    int sPref, int sText) {
     NPREF = sPref;
     MAXGEN = sText;
     fileIn = in;
@@ -27,12 +28,10 @@ void TextGenerator::readFromFile() {
 }
 
 std::string TextGenerator::selectNewStr(prefix currentPref) {
-    std::map<prefix, std::vector<std::string>>::iterator it = stateTab.find(currentPref);
+    table::iterator it = stateTab.find(currentPref);
     if (it != stateTab.end()) {
         return it->second[rand() % (it->second).size()];
-    }
-    else
-    {
+    } else {
         return "";
     }
 }
