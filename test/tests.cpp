@@ -27,21 +27,21 @@ TEST(test2, recordFormation) {
     }
 }
 
-TEST(test3, wordÑhoice) {
+TEST(test3, wordChoice) {
     TextGenerator generator = TextGenerator("test3.txt", "", 2, 1000);
     generator.readFromFile();
     std::string* nextStr = generator.selectNewStr();
     ASSERT_EQ(*nextStr, "ïğîãğàììèğîâàíèå");
 }
 
-TEST(test4, multipleÑhoice) {
+TEST(test4, multipleChoice) {
     TextGenerator generator = TextGenerator("test4.txt", "", 2, 1000);
     generator.readFromFile();
     std::string* nextStr = generator.selectNewStr();
     ASSERT_TRUE((*nextStr == "ïîäîñïåâøèå") || (*nextStr == "c"));
 }
 
-TEST(test4, multipleÑhoice) {
+TEST(test5, dimensionalÑheck) {
     TextGenerator generator = TextGenerator("test5.txt", "resultTest5.txt", 2, 1000);
     generator.generate();
     std::ifstream in("resultTest5.txt");
