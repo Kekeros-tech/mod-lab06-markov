@@ -41,7 +41,7 @@ TEST(test4, multipleChoice) {
     ASSERT_TRUE((*nextStr == "ïîäîñïåâøèå") || (*nextStr == "c"));
 }
 
-TEST(test5, dimensionalÑheck) {
+TEST(test5, dimensionalCheck) {
     TextGenerator generator = TextGenerator("test5.txt", "resultTest5.txt", 2, 1000);
     generator.generate();
     std::ifstream in("resultTest5.txt");
