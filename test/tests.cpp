@@ -37,6 +37,7 @@ TEST(test3, wordChoice) {
     std::string nextStr = generator.selectNewStr(expected);
     ASSERT_EQ(nextStr, "программирование");
 
+
 }
 
 TEST(test4, multipleChoice) {
