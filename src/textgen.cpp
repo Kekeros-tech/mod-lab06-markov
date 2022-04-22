@@ -2,7 +2,7 @@
 // #pragma once
 #include "textgen.h"
 
-TextGenerator::TextGenerator(std::string in, std::string out, 
+TextGenerator::TextGenerator(std::string in, std::string out,
     int sPref, int sText) {
     NPREF = sPref;
     MAXGEN = sText;
@@ -58,9 +58,7 @@ std::vector<std::string> TextGenerator::formText() {
             resultOfGeneration.push_back(nextStr);
             next.pop_front();
             next.push_back(nextStr);
-        }
-        else
-        {
+        } else {
             break;
         }
     }

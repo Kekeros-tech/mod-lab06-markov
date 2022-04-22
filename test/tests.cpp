@@ -10,7 +10,7 @@
 TEST(test1, prefixSize) {
     TextGenerator generator = TextGenerator("test1.txt", "", 3, 1000);
     generator.readFromFile();
-    ASSERT_EQ(generator.start.size(),3);
+    ASSERT_EQ(generator.start.size(), 3);
 }
 
 TEST(test2, recordFormation) {
@@ -19,9 +19,9 @@ TEST(test2, recordFormation) {
     prefix expected;
     expected.push_back("Это");
     expected.push_back("второй");
-    table::iterator r=g.stateTab.find(expected);
+    table::iterator r = g.stateTab.find(expected);
     if (r != g.stateTab.end()) {
-        ASSERT_EQ(r->second[0],"тест");
+        ASSERT_EQ(r->second[0], "тест");
     } else {
         FAIL();
     }
@@ -48,7 +48,8 @@ TEST(test4, multipleChoice) {
 }
 
 TEST(test5, dimensionalCheck) {
-    TextGenerator generator = TextGenerator("test5.txt", "resultTest5.txt", 2, 1000);
+    TextGenerator generator = TextGenerator(
+        "test5.txt", "resultTest5.txt",2, 1000);
     generator.generate();
     std::ifstream in("resultTest5.txt");
     std::string str;
