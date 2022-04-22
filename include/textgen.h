@@ -17,7 +17,6 @@ public:
     int NPREF;
     int MAXGEN;
     prefix start;
-    prefix next;
     std::map<prefix, std::vector<std::string>> stateTab;
     std::string fileIn;
     std::string fileOut;
@@ -25,6 +24,6 @@ public:
     void generate();
     void readFromFile();
     void writeToFile();
-    std::string* selectNewStr();
+    std::string* selectNewStr(prefix);
     std::vector<std::string> formText();
 };

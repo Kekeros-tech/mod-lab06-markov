@@ -30,14 +30,20 @@ TEST(test2, recordFormation) {
 TEST(test3, wordChoice) {
     TextGenerator generator = TextGenerator("test3.txt", "", 2, 1000);
     generator.readFromFile();
-    std::string* nextStr = generator.selectNewStr();
+    prefix expected;
+    expected.push_back("я");
+    expected.push_back("полюбил");
+    std::string* nextStr = generator.selectNewStr(expected);
     ASSERT_EQ(*nextStr, "программирование");
 }
 
 TEST(test4, multipleChoice) {
     TextGenerator generator = TextGenerator("test4.txt", "", 2, 1000);
     generator.readFromFile();
-    std::string* nextStr = generator.selectNewStr();
+    prefix expected;
+    expected.push_back("с");
+    expected.push_back("ходу");
+    std::string* nextStr = generator.selectNewStr(expected);
     ASSERT_TRUE((*nextStr == "подоспевшие") || (*nextStr == "c"));
 }
 
