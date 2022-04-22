@@ -49,7 +49,7 @@ TEST(test4, multipleChoice) {
 
 TEST(test5, dimensionalCheck) {
     TextGenerator generator = TextGenerator(
-        "test5.txt", "resultTest5.txt",2, 1000);
+        "test5.txt", "resultTest5.txt", 2, 1000);
     generator.generate();
     std::ifstream in("resultTest5.txt");
     std::string str;
