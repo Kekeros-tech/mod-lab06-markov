@@ -26,16 +26,14 @@ void TextGenerator::readFromFile() {
     in.close();
 }
 
-std::string* TextGenerator::selectNewStr(prefix currentPref) {
+std::string TextGenerator::selectNewStr(prefix currentPref) {
     std::map<prefix, std::vector<std::string>>::iterator it = stateTab.find(currentPref);
     if (it != stateTab.end()) {
-        std::string* str = new std::string();
-        *str = it->second[rand() % (it->second).size()];
-        return str;
+        return it->second[rand() % (it->second).size()];
     }
     else
     {
-        return NULL;
+        return "";
     }
 }
 
@@ -56,11 +54,11 @@ std::vector<std::string> TextGenerator::formText() {
     std::string str;
     srand(time(0));
     for (int i = 0; i < MAXGEN; i++) {
-        std::string* nextStr = selectNewStr(next);
-        if (nextStr != NULL) {
-            resultOfGeneration.push_back(*nextStr);
+        std::string nextStr = selectNewStr(next);
+        if (nextStr != "") {
+            resultOfGeneration.push_back(nextStr);
             next.pop_front();
-            next.push_back(*nextStr);
+            next.push_back(nextStr);
         }
         else
         {

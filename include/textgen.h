@@ -24,6 +24,6 @@ public:
     void generate();
     void readFromFile();
     void writeToFile();
-    std::string* selectNewStr(prefix);
+    std::string selectNewStr(prefix);
     std::vector<std::string> formText();
 };

@@ -1,5 +1,6 @@
 ﻿// Copyright 2021 GHA Test Team
-#include <gtest/gtest.h>
+#pragma comment(lib,"pthreadVC3.lib")
+#include "gtest/gtest.h"
 #include <time.h>
 #include <stdexcept>
 #include <iostream>
@@ -33,8 +34,8 @@ TEST(test3, wordChoice) {
     prefix expected;
     expected.push_back("я");
     expected.push_back("полюбил");
-    std::string* nextStr = generator.selectNewStr(expected);
-    ASSERT_EQ(*nextStr, "программирование");
+    std::string nextStr = generator.selectNewStr(expected);
+    ASSERT_EQ(nextStr, "программирование");
 }
 
 TEST(test4, multipleChoice) {
@@ -43,8 +44,8 @@ TEST(test4, multipleChoice) {
     prefix expected;
     expected.push_back("с");
     expected.push_back("ходу");
-    std::string* nextStr = generator.selectNewStr(expected);
-    ASSERT_TRUE((*nextStr == "подоспевшие") || (*nextStr == "c"));
+    std::string nextStr = generator.selectNewStr(expected);
+    ASSERT_TRUE((nextStr == "подоспевшие") || (nextStr == "c"));
 }
 
 TEST(test5, dimensionalCheck) {
