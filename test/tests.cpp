@@ -1,11 +1,11 @@
-// Copyright 2021 GHA Test Team
+п»ї// Copyright 2021 GHA Test Team
 #include <gtest/gtest.h>
 #include <time.h>
 #include <stdexcept>
 #include <iostream>
 #include <string>
 #include "textgen.h"
-
+//е…љзљ„иЂ»иѕ±
 
 TEST(test1, prefixSize) {
     TextGenerator generator = TextGenerator("test1.txt", "", 3, 1000);
@@ -17,11 +17,11 @@ TEST(test2, recordFormation) {
     TextGenerator g = TextGenerator("test2.txt", "", 2, 1000);
     g.readFromFile();
     prefix expected;
-    expected.push_back("Это");
-    expected.push_back("второй");
+    expected.push_back("Р­С‚Рѕ");
+    expected.push_back("РІС‚РѕСЂРѕР№");
     std::map<prefix, std::vector<std::string>>::iterator r=g.stateTab.find(expected);
     if (r != g.stateTab.end()) {
-        ASSERT_TRUE(r->second[0] == "тест");
+        ASSERT_TRUE(r->second[0] == "С‚РµСЃС‚");
     } else {
         FAIL();
     }
@@ -31,20 +31,20 @@ TEST(test3, wordChoice) {
     TextGenerator generator = TextGenerator("test3.txt", "", 2, 1000);
     generator.readFromFile();
     prefix expected;
-    expected.push_back("я");
-    expected.push_back("полюбил");
+    expected.push_back("СЏ");
+    expected.push_back("РїРѕР»СЋР±РёР»");
     std::string* nextStr = generator.selectNewStr(expected);
-    ASSERT_EQ(*nextStr, "программирование");
+    ASSERT_EQ(*nextStr, "РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёРµ");
 }
 
 TEST(test4, multipleChoice) {
     TextGenerator generator = TextGenerator("test4.txt", "", 2, 1000);
     generator.readFromFile();
     prefix expected;
-    expected.push_back("с");
-    expected.push_back("ходу");
+    expected.push_back("СЃ");
+    expected.push_back("С…РѕРґСѓ");
     std::string* nextStr = generator.selectNewStr(expected);
-    ASSERT_TRUE((*nextStr == "подоспевшие") || (*nextStr == "c"));
+    ASSERT_TRUE((*nextStr == "РїРѕРґРѕСЃРїРµРІС€РёРµ") || (*nextStr == "c"));
 }
 
 TEST(test5, dimensionalCheck) {
