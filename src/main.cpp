@@ -1,12 +1,8 @@
-#include <stdio.h>
+// Copyright 2022 UNN-IASR
 #include <iostream>
-#include <string>
-#include <vector>
-#include <deque>
-#include <map>
 #include "textgen.h"
 
-
 int main() {
-    return 0;
+    TextGenerator generator = TextGenerator("in.txt", "out.txt", 2, 1);
+    generator.generate();
 }

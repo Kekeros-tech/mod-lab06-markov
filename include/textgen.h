@@ -1,3 +1,4 @@
+// Copyright 2022 UNN-IASR
 #pragma once
 #include <stdio.h>
 #include <string>
@@ -24,4 +25,6 @@ public:
     void generate();
     void readFromFile();
     void writeToFile();
+    std::string* selectNewStr();
+    std::vector<std::string> formText();
 };

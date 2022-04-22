@@ -14,17 +14,46 @@ TEST(test1, prefixSize) {
 }
 
 TEST(test2, recordFormation) {
-    TextGenerator generator = TextGenerator("test2.txt", "", 2, 1000);
-    generator.readFromFile();
+    TextGenerator g = TextGenerator("test2.txt", "", 2, 1000);
+    g.readFromFile();
     prefix expected;
     expected.push_back("Ýòî");
     expected.push_back("âòîðîé");
-    std::map<prefix, std::vector<std::string>>::iterator result = generator.stateTab.find(expected);
-    if (result != generator.stateTab.end()) {
-        ASSERT_TRUE(result->second[0] == "òåñò");
-    }
-    else
-    {
+    std::map<prefix, std::vector<std::string>>::iterator r=g.stateTab.find(expected);
+    if (r != g.stateTab.end()) {
+        ASSERT_TRUE(r->second[0] == "òåñò");
+    } else {
         FAIL();
     }
+}
+
+TEST(test3, wordÑhoice) {
+    TextGenerator generator = TextGenerator("test3.txt", "", 2, 1000);
+    generator.readFromFile();
+    std::string* nextStr = generator.selectNewStr();
+    ASSERT_EQ(*nextStr, "ïðîãðàììèðîâàíèå");
+}
+
+TEST(test4, multipleÑhoice) {
+    TextGenerator generator = TextGenerator("test4.txt", "", 2, 1000);
+    generator.readFromFile();
+    std::string* nextStr = generator.selectNewStr();
+    ASSERT_TRUE((*nextStr == "ïîäîñïåâøèå") || (*nextStr == "c"));
+}
+
+TEST(test4, multipleÑhoice) {
+    TextGenerator generator = TextGenerator("test5.txt", "resultTest5.txt", 2, 1000);
+    generator.generate();
+    std::ifstream in("resultTest5.txt");
+    std::string str;
+    int count = 0;
+    if (in.is_open()) {
+        while (in >> str) {
+            count++;
+        }
+    } else {
+        FAIL();
+    }
+    in.close();
+    ASSERT_EQ(count, 79);
 }

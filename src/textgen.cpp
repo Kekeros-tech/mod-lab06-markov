@@ -1,19 +1,10 @@
+// Copyright 2022 UNN-IASR
 // #pragma once
 #include "textgen.h"
-#include <stdio.h>
-#include <string>
-#include <iostream>
-#include <vector>
-#include <deque>
-#include <map>
-#include <sstream>
-#include <fstream>
-#include <random>
 
-
-TextGenerator::TextGenerator(std::string in, std::string out, int sizeOfPrefix, int sizeOfOutText) {
-    NPREF = sizeOfPrefix;
-    MAXGEN = sizeOfOutText;
+TextGenerator::TextGenerator(std::string in, std::string out, int sPref, int sText) {
+    NPREF = sPref;
+    MAXGEN = sText;
     fileIn = in;
     fileOut = out;
 }
@@ -34,28 +25,48 @@ void TextGenerator::readFromFile() {
     in.close();
 }
 
+std::string* TextGenerator::selectNewStr() {
+    std::map<prefix, std::vector<std::string>>::iterator it = stateTab.find(next);
+    if (it != stateTab.end()) {
+        std::string* str = new std::string();
+        *str = it->second[rand() % (it->second).size()];
+        return str;
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
 void TextGenerator::writeToFile() {
     std::ofstream out(fileOut);
-    for (int i = 0; i < NPREF; i++) {
-        out << start[i] << " ";
+    std::vector<std::string> resultOfGeneration = formText();
+    for (int i = 0; i < resultOfGeneration.size(); i++) {
+        out << resultOfGeneration[i] << " ";
     }
-    std::map<prefix, std::vector<std::string>>::iterator it;
+}
+
+std::vector<std::string> TextGenerator::formText() {
+    std::vector<std::string> resultOfGeneration;
+    for (int i = 0; i < NPREF; i++) {
+        resultOfGeneration.push_back(start[i]);
+    }
     next = start;
     std::string str;
     srand(time(0));
     for (int i = 0; i < MAXGEN; i++) {
-        it = stateTab.find(next);
-        if (it != stateTab.end()) {
-            str = it->second[rand() % (it->second).size()];
-            out << str << " ";
+        std::string* nextStr = selectNewStr();
+        if (nextStr != NULL) {
+            resultOfGeneration.push_back(*nextStr);
             next.pop_front();
-            next.push_back(str);
+            next.push_back(*nextStr);
         }
         else
         {
             break;
         }
     }
+    return resultOfGeneration;
 }
 
 void TextGenerator::generate() {
