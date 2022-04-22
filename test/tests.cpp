@@ -47,7 +47,7 @@ TEST(test4, multipleChoice) {
     expected.push_back("с");
     expected.push_back("ходу");
     std::string nextStr = generator.selectNewStr(expected);
-    ASSERT_TRUE((nextStr == "подоспевшие") || (nextStr == "c"));
+    ASSERT_TRUE((nextStr == "подоспевшие") || (nextStr == "с"));
 }
 
 TEST(test5, dimensionalCheck) {
